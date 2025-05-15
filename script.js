@@ -119,10 +119,10 @@ var motivationAuthor = document.querySelector('.motivation-2 h2')
 
 async function fetchQuote() {
   try {
-    const response = await fetch('https://programming-quotes-api.herokuapp.com/quotes/random');
+    const response = await fetch('https://zenquotes.io/api/random');
     const data = await response.json();
-    motivationQuote.textContent = data.en;
-    motivationAuthor.textContent = data.author || "Unknown";
+    motivationQuote.textContent = data[0].q;
+    motivationAuthor.textContent = data[0].a || "Unknown";
   } catch (error) {
     console.error("Error fetching quote:", error);
     motivationQuote.textContent = "Unable to fetch quote.";
@@ -130,9 +130,4 @@ async function fetchQuote() {
   }
 }
 
-
-
-
-
-
-fetchQuote()
+fetchQuote();
